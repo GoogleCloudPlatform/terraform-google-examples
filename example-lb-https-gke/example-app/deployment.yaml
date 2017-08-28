@@ -1,0 +1,52 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: example-app
+  name: example-app
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: example-app
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: example-app
+    spec:
+      containers:
+        - image: php:7-apache
+          imagePullPolicy: Always
+          name: example-app
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - name: "index-php"
+              mountPath: "/var/www/html/"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+      terminationGracePeriodSeconds: 10
+      volumes:
+        - name: "index-php"
+          configMap:
+            name: "example-app"
+            items:
+              - key: "index.php"
+                path: "index.php"
