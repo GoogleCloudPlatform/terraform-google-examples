@@ -12,6 +12,7 @@ __Table of Contents__
 1. [example-lb-https-content](#example-lb-https-content)
 1. [example-lb-internal](#example-lb-internal)
 1. [example-k8s-gce](#example-k8s-gce)
+1. [example-gke-nat-gateway](#example-gke-nat-gateway)
 
 ## [example-lb](./example-lb)
 
