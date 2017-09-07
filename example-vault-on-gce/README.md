@@ -4,6 +4,18 @@
 
 ![architecture diagram](./diagram.png)
 
+## Create the Cloud KMS KeyRing for asset encryption:
+
+Cloud KMS is used to encrypt assets like the Vault unseal keys and TLS certificates so they can be securely stored in a Cloud Storage bucket.
+
+Create the key ring and encryption key:
+
+```
+gcloud kms keyrings create vault --location global
+
+gcloud kms keys create vault-init --location global --keyring vault --purpose encryption
+```
+
 ## Set up the environment
 
 ```
@@ -11,12 +23,14 @@ gcloud auth application-default login
 export GOOGLE_PROJECT=$(gcloud config get-value project)
 ```
 
-Add the project ID and bucket name to the tfvars file:
+Add the project ID, bucket name and KeyRing name to the `terraform.tfvars` file:
 
 ```
+export GOOGLE_PROJECT=$(gcloud config get-value project)
 cat - > terraform.tfvars <<EOF
 project_id = "${GOOGLE_PROJECT}"
-storage_bucket = "${GOOGLE_PROJECT}-vault""
+storage_bucket = "${GOOGLE_PROJECT}-vault"
+kms_keyring_name = "vault"
 EOF
 ```
 
@@ -28,34 +42,56 @@ terraform plan
 terraform apply
 ```
 
+After a few minutes, the Vault instance will be ready.
+
 ## SSH Into Vault Instnace
 
-List instances to find the Vault instance:
+Use SSH to connect to the Vault instance:
 
 ```
-VAULT_INSTANCE=$(gcloud compute instances list --limit=1 --filter=name~vault- --uri)
+gcloud compute ssh $(gcloud compute instances list --limit=1 --filter=name~vault- --uri) -- sudo bash
 ```
 
-```
-gcloud compute ssh ${VAULT_INSTANCE}
-```
+> Note: the remainder of the commands will be run from within this SSH session.
 
 ## Initialize Vault
 
+Obtain the unseal keys from Cloud Storage and decrypt them using Cloud KMS:
+
+```shell
+export GOOGLE_PROJECT=$(gcloud config get-value project)
+gcloud kms decrypt \
+  --location=global  \
+  --keyring=vault \
+  --key=vault-init \
+  --plaintext-file=/dev/stdout \
+  --ciphertext-file=<(gsutil cat gs://${GOOGLE_PROJECT}-vault-test-assets/vault_unseal_keys.txt.encrypted)
 ```
-vault init
+
+The output will look like the following:
+
 ```
-> Record the unseal keys and root token.
+Unseal Key 1: oO1UNH4TPVZRFuGWUa9D0eciJ2LMMgi2PYxm/bLL/lt0
+Unseal Key 2: +4q3O9LT46p22uTcDTYZyIVvVt+mxhB8OQ87vZFc3pkp
+Unseal Key 3: tFnuYrDD1Xgkec3wFXhk93wIjEfq3kCOD34i16MkE+pl
+Unseal Key 4: DFQhkl344Z+jpwr9L/looYjNYPAh8/UKGF5fXAO2Vj0W
+Unseal Key 5: XOQVAZCKt6njWcF6IAP19ER1WnRqhH5MllyvcywBLtaw
+Initial Root Token: 8d9b6907-0386-c422-cad8-624ceba2d0ae
+```
 
 Unseal Vault
 
 ```
 vault unseal
-vault unseal
-vault unseal
 ```
 
-> Enter each unseal key per command.
+> Run the command above at least 3 times, providing a different unseal key when prompted to unseal Vault.
+
+Verify Vault is unsealed:
+
+```
+vault status
+```
 
 Authenticate to Vault as root:
 

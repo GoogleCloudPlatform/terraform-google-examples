@@ -24,6 +24,7 @@ variable zone {
 
 variable project_id {}
 variable storage_bucket {}
+variable kms_keyring_name {}
 
 provider google {
   region = "${var.region}"
@@ -36,5 +37,6 @@ module "vault" {
   zone                 = "${var.zone}"
   machine_type         = "n1-standard-4"
   storage_bucket       = "${var.storage_bucket}"
+  kms_keyring_name     = "${var.kms_keyring_name}"
   force_destroy_bucket = true
 }
