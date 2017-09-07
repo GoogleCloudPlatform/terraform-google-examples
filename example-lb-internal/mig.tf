@@ -30,6 +30,14 @@ data "template_file" "group2-startup-script" {
   }
 }
 
+data "template_file" "group3-startup-script" {
+  template = "${file("${format("%s/../scripts/gceme.sh.tpl", path.module)}")}"
+
+  vars {
+    PROXY_PATH = ""
+  }
+}
+
 module "mig1" {
   source            = "github.com/GoogleCloudPlatform/terraform-google-managed-instance-group"
   region            = "${var.region}"
@@ -46,7 +54,7 @@ module "mig1" {
 module "mig2" {
   source            = "github.com/GoogleCloudPlatform/terraform-google-managed-instance-group"
   region            = "${var.region}"
-  zone              = "${var.zone}"
+  zone              = "us-central1-c"
   name              = "group2"
   size              = 2
   target_tags       = ["allow-group2"]
@@ -61,8 +69,8 @@ module "mig3" {
   zone              = "us-central1-f"
   name              = "group3"
   size              = 2
-  target_tags       = ["allow-group2"]
+  target_tags       = ["allow-group3"]
   service_port      = 80
   service_port_name = "http"
-  startup_script    = "${data.template_file.group2-startup-script.rendered}"
+  startup_script    = "${data.template_file.group3-startup-script.rendered}"
 }

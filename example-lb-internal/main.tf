@@ -42,7 +42,7 @@ module "gce-lb-fr" {
 module "gce-ilb" {
   source      = "github.com/GoogleCloudPlatform/terraform-google-lb-internal"
   region      = "${var.region}"
-  name        = "group2-ilb"
+  name        = "group-ilb"
   ports       = ["${module.mig2.service_port}"]
   health_port = "${module.mig2.service_port}"
   source_tags = ["${module.mig1.target_tags}"]
