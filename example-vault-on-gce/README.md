@@ -18,6 +18,13 @@ gcloud kms keys create vault-init --location global --keyring vault --purpose en
 
 ## Set up the environment
 
+Enable the following Google Cloud APIs before continuing:
+
+- Google Compute Engine API
+- Google Cloud Storage
+- Google Cloud Key Management Service (KMS) API
+- Google Identity and Access Management (IAM) API
+
 ```
 gcloud auth application-default login
 export GOOGLE_PROJECT=$(gcloud config get-value project)
@@ -65,7 +72,7 @@ gcloud kms decrypt \
   --keyring=vault \
   --key=vault-init \
   --plaintext-file=/dev/stdout \
-  --ciphertext-file=<(gsutil cat gs://${GOOGLE_PROJECT}-vault-test-assets/vault_unseal_keys.txt.encrypted)
+  --ciphertext-file=<(gsutil cat gs://${GOOGLE_PROJECT}-vault-assets/vault_unseal_keys.txt.encrypted)
 ```
 
 The output will look like the following:
