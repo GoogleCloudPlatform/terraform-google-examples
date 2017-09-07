@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 variable region {
   default = "us-central1"
 }
@@ -31,8 +31,8 @@ module "gce-lb-http" {
   url_map        = "${google_compute_url_map.my-url-map.self_link}"
   create_url_map = false
   ssl            = true
-  private_key    = "${file("./example.key")}"
-  certificate    = "${file("./example.crt")}"
+  private_key    = "${tls_private_key.example.private_key_pem}"
+  certificate    = "${tls_self_signed_cert.example.cert_pem}"
 
   backends = {
     "0" = [

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 data "template_file" "group1-west-startup-script" {
   template = "${file("${format("%s/gceme.sh.tpl", path.module)}")}"
 
