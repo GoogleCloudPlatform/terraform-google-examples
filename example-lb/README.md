@@ -1,5 +1,7 @@
 # TCP Forwarding Rule Example
 
+This example creates a managed instance group with 2 instances in the same region and a network TCP Load Balancer.
+
 **Figure 1.** *diagram of Google Cloud resources*
 
 ![architecture diagram](./diagram.png)

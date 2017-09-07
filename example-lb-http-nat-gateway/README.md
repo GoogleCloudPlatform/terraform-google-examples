@@ -1,5 +1,7 @@
 # Global HTTP Example to GCE instances with NAT Gateway
 
+This example creates a global HTTP forwarding rule to an instance group without external IPs. The instances access the internet via a NAT gateway.
+
 **Figure 1.** *diagram of Google Cloud resources*
 
 ![architecture diagram](./diagram.png)

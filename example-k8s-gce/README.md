@@ -1,5 +1,7 @@
 # Kubernetes Cluster on GCE Example
 
+This example creates a Kunbernetes cluster on Compute Engine.
+
 **Figure 1.** *diagram of Google Cloud resources*
 
 ![architecture diagram](./diagram.png)

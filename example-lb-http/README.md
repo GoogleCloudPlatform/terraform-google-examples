@@ -1,5 +1,7 @@
 # HTTP Load Balancer Example
 
+This example creates a global HTTP forwarding rule to forward traffic to instance groups in the us-west1 and us-east1 regions.
+
 **Figure 1.** *diagram of Google Cloud resources*
 
 ![architecture diagram](./diagram.png)
