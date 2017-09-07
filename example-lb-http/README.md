@@ -32,15 +32,13 @@ You should see the instance details from the region closest to you.
 
 ### Test balancing to other region
 
-Resize the instnace group of your closest region to cause traffic to flow to the other group.
+Resize the instance group of your closest region to cause traffic to flow to the other group.
 
 If you are getting traffic from `group1` (us-west1) from `http://${EXTERNAL_IP}`, scale group 1 to 0 instances:
 
 ```
 TF_VAR_group1_size=0 terraform apply
 ```
-
-> As of v0.9.11, this does not work. Waiting for [PR #65](https://github.com/terraform-providers/terraform-provider-google/pull/65).
 
 Otherwise scale group 2 (us-east1) to 0 instances:
 
