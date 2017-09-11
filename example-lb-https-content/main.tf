@@ -22,7 +22,10 @@ provider google {
   region = "${var.region}"
 }
 
-variable backend_bucket {}
+resource "random_id" "assets-bucket" {
+  prefix      = "terraform-static-content-"
+  byte_length = 2
+}
 
 module "gce-lb-http" {
   source         = "github.com/GoogleCloudPlatform/terraform-google-lb-http"
@@ -113,14 +116,14 @@ resource "google_compute_url_map" "my-url-map" {
 }
 
 resource "google_compute_backend_bucket" "assets" {
-  name        = "${var.backend_bucket}"
+  name        = "${random_id.assets-bucket.hex}"
   description = "Contains static resources for example app"
   bucket_name = "${google_storage_bucket.assets.name}"
   enable_cdn  = true
 }
 
 resource "google_storage_bucket" "assets" {
-  name     = "${var.backend_bucket}"
+  name     = "${random_id.assets-bucket.hex}"
   location = "US"
 
   // delete bucket and contents on destroy.

@@ -11,7 +11,6 @@ This example creates an HTTPS load balancer to forward traffic to a custom URL m
 ```
 gcloud auth application-default login
 export GOOGLE_PROJECT=$(gcloud config get-value project)
-export TF_VAR_backend_bucket="${GOOGLE_PROJECT}-static-assets"
 ```
 
 ## Manually create GKE cluster (without Terraform)
