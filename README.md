@@ -13,6 +13,7 @@ __Table of Contents__
 1. [example-lb-internal](#example-lb-internal)
 1. [example-k8s-gce](#example-k8s-gce)
 1. [example-gke-nat-gateway](#example-gke-nat-gateway)
+1. [example-sql-db](#example-sql-db)
 
 ## [example-lb](./example-lb)
 
@@ -101,3 +102,13 @@ Modules used:
 Modules used:
 
 - [terraform-google-nat-gateway](https://github.com/GoogleCloudPlatform/terraform-google-nat-gateway)
+
+## [example-sql-db](./example-sql-db)
+
+**Figure 1.** *example-sql-db diagram*
+
+<img src="./example-sql-db/diagram.png" width="800px"></img>
+
+Modules used:
+
+- [terraform-google-sql-db](https://github.com/GoogleCloudPlatform/terraform-google-sql-db)
