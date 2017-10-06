@@ -31,7 +31,7 @@ provider google {
 }
 
 module "vault" {
-  source               = "github.com/danisla/terraform-google-vault"
+  source               = "github.com/GoogleCloudPlatform/terraform-google-vault"
   project_id           = "${var.project_id}"
   region               = "${var.region}"
   zone                 = "${var.zone}"
