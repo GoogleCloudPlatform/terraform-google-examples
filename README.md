@@ -14,6 +14,7 @@ __Table of Contents__
 1. [example-k8s-gce](#example-k8s-gce)
 1. [example-gke-nat-gateway](#example-gke-nat-gateway)
 1. [example-sql-db](#example-sql-db)
+1. [example-vault-on-gce](#example-vault-on-gce)
 
 ## [example-lb](./example-lb)
 
@@ -112,3 +113,13 @@ Modules used:
 Modules used:
 
 - [terraform-google-sql-db](https://github.com/GoogleCloudPlatform/terraform-google-sql-db)
+
+## [example-vault-on-gce](./example-vault-on-gce)
+
+**Figure 1.** *example-vault-on-gce diagram*
+
+<img src="./example-vault-on-gce/diagram.png" width="800px"></img>
+
+Modules used:
+
+- [terraform-google-vault](https://github.com/GoogleCloudPlatform/terraform-google-vault)
