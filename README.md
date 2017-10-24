@@ -114,11 +114,11 @@ Modules used:
 
 - [terraform-google-sql-db](https://github.com/GoogleCloudPlatform/terraform-google-sql-db)
 
-## [example-vault-on-gce](./example-vault-on-gce)
+## [example-vault-on-gce](https://github.com/GoogleCloudPlatform/terraform-google-vault/tree/master/examples/vault-on-gce)
 
 **Figure 1.** *example-vault-on-gce diagram*
 
-<img src="./example-vault-on-gce/diagram.png" width="800px"></img>
+<img src="https://raw.githubusercontent.com/GoogleCloudPlatform/terraform-google-vault/master/examples/vault-on-gce/diagram.png" width="800px"></img>
 
 Modules used:
 
