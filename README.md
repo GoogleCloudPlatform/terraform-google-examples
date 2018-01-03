@@ -3,6 +3,24 @@ Google Cloud Platform Terraform module examples
 
 Collection of examples for using Terraform with Google Cloud Platform.
 
+Clone the repository:
+
+```
+git clone https://github.com/GoogleCloudPlatform/terraform-google-examples.git
+cd terraform-google-examples
+git submodule init && git submodule update
+```
+
+The example directories are all symlinked to their module subdirectories. 
+
+Change to the directory with the example:
+
+```
+cd EXAMPLE_NAME
+```
+
+Follow instructions in the README.md for the example.
+
 __Table of Contents__
 
 1. [example-lb](#example-lb)
