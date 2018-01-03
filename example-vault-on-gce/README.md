@@ -1,1 +1,0 @@
-Moved to [https://github.com/GoogleCloudPlatform/terraform-google-vault/tree/master/examples/vault-on-gce](https://github.com/GoogleCloudPlatform/terraform-google-vault/tree/master/examples/vault-on-gce)

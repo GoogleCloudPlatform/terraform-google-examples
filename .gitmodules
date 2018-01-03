@@ -1,0 +1,24 @@
+[submodule "modules/terraform-google-vault"]
+	path = modules/terraform-google-vault
+	url = https://github.com/GoogleCloudPlatform/terraform-google-vault
+[submodule "modules/terraform-google-lb-http"]
+	path = modules/terraform-google-lb-http
+	url = https://github.com/GoogleCloudPlatform/terraform-google-lb-http
+[submodule "modules/terraform-google-lb"]
+	path = modules/terraform-google-lb
+	url = https://github.com/GoogleCloudPlatform/terraform-google-lb
+[submodule "modules/terraform-google-lb-internal"]
+	path = modules/terraform-google-lb-internal
+	url = https://github.com/GoogleCloudPlatform/terraform-google-lb-internal
+[submodule "modules/terraform-google-k8s-gce"]
+	path = modules/terraform-google-k8s-gce
+	url = https://github.com/GoogleCloudPlatform/terraform-google-k8s-gce
+[submodule "modules/terraform-google-nat-gateway"]
+	path = modules/terraform-google-nat-gateway
+	url = https://github.com/GoogleCloudPlatform/terraform-google-nat-gateway
+[submodule "modules/terraform-google-sql-db"]
+	path = modules/terraform-google-sql-db
+	url = https://github.com/GoogleCloudPlatform/terraform-google-sql-db
+[submodule "modules/terraform-google-managed-instance-group"]
+	path = modules/terraform-google-managed-instance-group
+	url = https://github.com/GoogleCloudPlatform/terraform-google-managed-instance-group
