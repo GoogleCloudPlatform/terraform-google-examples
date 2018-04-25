@@ -33,6 +33,8 @@ __Table of Contents__
 1. [example-gke-nat-gateway](#example-gke-nat-gateway)
 1. [example-sql-db](#example-sql-db)
 1. [example-vault-on-gce](#example-vault-on-gce)
+1. [example-gke-k8s-helm](#example-gke-k8s-helm)
+1. [example-gke-k8s-service-lb](#example-gke-k8s-service-lb)
 
 ## [example-lb](https://github.com/GoogleCloudPlatform/terraform-google-lb/tree/master/examples/basic)
 
@@ -152,3 +154,11 @@ Modules used:
 Modules used:
 
 - [terraform-google-vault](https://github.com/GoogleCloudPlatform/terraform-google-vault)
+
+## [example-gke-k8s-helm](https://github.com/GoogleCloudPlatform/terraform-google-examples/tree/master/example-gke-k8s-helm)
+
+Example showing how to deploy Helm releases to GKE from Terraform
+
+## [example-gke-k8s-service-lb](https://github.com/GoogleCloudPlatform/terraform-google-examples/tree/master/example-gke-k8s-service-lb)
+
+Example showing how to create a Kubernetes Service tpye LoadBalancer to GKE from Terraform
