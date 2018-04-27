@@ -35,6 +35,7 @@ __Table of Contents__
 1. [example-vault-on-gce](#example-vault-on-gce)
 1. [example-gke-k8s-helm](#example-gke-k8s-helm)
 1. [example-gke-k8s-service-lb](#example-gke-k8s-service-lb)
+1. [example-gke-k8s-multi-region](#example-gke-k8s-multi-region)
 
 ## [example-lb](https://github.com/GoogleCloudPlatform/terraform-google-lb/tree/master/examples/basic)
 
@@ -162,3 +163,9 @@ Example showing how to deploy Helm releases to GKE from Terraform
 ## [example-gke-k8s-service-lb](https://github.com/GoogleCloudPlatform/terraform-google-examples/tree/master/example-gke-k8s-service-lb)
 
 Example showing how to create a Kubernetes Service tpye LoadBalancer to GKE from Terraform
+
+## [example-gke-k8s-multi-region](https://github.com/GoogleCloudPlatform/terraform-google-examples/tree/master/example-gke-k8s-multi-region)
+
+Example showing how to create an L7 HTTP load balancer across multiple regional GKE clusters.
+
+<img src="https://github.com/GoogleCloudPlatform/terraform-google-examples/raw/master/example-gke-k8s-multi-region/diagram.png" width="800px"></img>
