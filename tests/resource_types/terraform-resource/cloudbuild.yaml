@@ -1,0 +1,5 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-f', 'Dockerfile', '-t', 'gcr.io/$PROJECT_ID/terraform-resource:latest', '.' ]
+images:
+- 'gcr.io/$PROJECT_ID/terraform-resource:latest'

@@ -7,12 +7,22 @@ gcloud auth application-default login
 export GOOGLE_PROJECT=$(gcloud config get-value project)
 ```
 
+### Install helm
+
+```
+curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
+chmod 700 get_helm.sh
+./get_helm.sh
+
+helm init --client-only
+```
+
 ### Install the helm provider
 
 MacOS:
 
 ```
-wget https://github.com/mcuadros/terraform-provider-helm/releases/download/v0.5.0/terraform-provider-helm_v0.5.0_darwin_amd64.tar.gz
+wget https://github.com/mcuadros/terraform-provider-helm/releases/download/v0.5.1/terraform-provider-helm_v0.5.1_darwin_amd64.tar.gz
 tar -xvf terraform-provider-helm*.tar.gz
 
 mkdir -p ~/.terraform.d/plugins/
@@ -22,7 +32,7 @@ mv terraform-provider-helm*/terraform-provider-helm ~/.terraform.d/plugins/
 Linux:
 
 ```
-wget https://github.com/mcuadros/terraform-provider-helm/releases/download/v0.5.0/terraform-provider-helm_v0.5.0_linux_amd64.tar.gz
+wget https://github.com/mcuadros/terraform-provider-helm/releases/download/v0.5.1/terraform-provider-helm_v0.5.1_linux_amd64.tar.gz
 tar -xvf terraform-provider-helm*.tar.gz
 
 mkdir -p ~/.terraform.d/plugins/
@@ -33,10 +43,8 @@ mv terraform-provider-helm*/terraform-provider-helm ~/.terraform.d/plugins/
 
 ```
 cat > terraform.tfvars <<EOF
-gke_username = "admin"
-gke_password = "$(openssl rand -base64 16)"
 helm_version = "$(helm version -c --short | egrep -o 'v[0-9].[0-9].[0-9]')"
-acme_email = "$(gcloud config get-value project)"
+acme_email = "$(gcloud config get-value account)"
 EOF
 ```
 

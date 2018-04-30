@@ -88,26 +88,29 @@ provider "kubernetes" {
   cluster_ca_certificate = "${base64decode(module.cluster2.cluster_ca_certificate)}"
 }
 
-module "cluster1_nginx" {
-  source      = "./k8s-nginx"
+module "cluster1_app" {
+  source      = "./k8s-app"
   external_ip = "${module.glb.external_ip}"
   node_port   = 30000
+
   providers = {
     kubernetes = "kubernetes.cluster1"
   }
 }
 
-module "cluster2_nginx" {
-  source      = "./k8s-nginx"
+module "cluster2_app" {
+  source      = "./k8s-app"
   external_ip = "${module.glb.external_ip}"
   node_port   = 30000
+
   providers = {
     kubernetes = "kubernetes.cluster2"
   }
 }
 
 module "glb" {
-  source            = "github.com/GoogleCloudPlatform/terraform-google-lb-http"
+  source            = "GoogleCloudPlatform/lb-http/google"
+  version           = "1.0.8"
   name              = "gke-multi-regional"
   target_tags       = ["tf-gke-region1", "tf-gke-region2"]
   firewall_networks = ["${google_compute_network.default.name}"]
@@ -141,30 +144,46 @@ module "glb" {
   ]
 }
 
-resource "null_resource" "cluster1_named_ports" {
-  count = 3
-
-  provisioner "local-exec" {
-    when    = "create"
-    command = "gcloud compute instance-groups set-named-ports ${element(module.cluster1.instance_groups, count.index)} --named-ports=http:30000"
-  }
-
-  depends_on = [
-    "module.cluster1",
-  ]
+module "cluster1_named_port_1" {
+  source = "github.com/danisla/terraform-google-named-ports"
+  instance_group = "${element(module.cluster1.instance_groups, 0)}"
+  name = "http"
+  port = "30000"
 }
 
-resource "null_resource" "cluster2_named_ports" {
-  count = 3
+module "cluster1_named_port_2" {
+  source = "github.com/danisla/terraform-google-named-ports"
+  instance_group = "${element(module.cluster1.instance_groups, 1)}"
+  name = "http"
+  port = "30000"
+}
 
-  provisioner "local-exec" {
-    when    = "create"
-    command = "gcloud compute instance-groups set-named-ports ${element(module.cluster2.instance_groups, count.index)} --named-ports=http:30000"
-  }
+module "cluster1_named_port_3" {
+  source = "github.com/danisla/terraform-google-named-ports"
+  instance_group = "${element(module.cluster1.instance_groups, 2)}"
+  name = "http"
+  port = "30000"
+}
 
-  depends_on = [
-    "module.cluster1",
-  ]
+module "cluster2_named_port_1" {
+  source = "github.com/danisla/terraform-google-named-ports"
+  instance_group = "${element(module.cluster2.instance_groups, 0)}"
+  name = "http"
+  port = "30000"
+}
+
+module "cluster2_named_port_2" {
+  source = "github.com/danisla/terraform-google-named-ports"
+  instance_group = "${element(module.cluster2.instance_groups, 1)}"
+  name = "http"
+  port = "30000"
+}
+
+module "cluster2_named_port_3" {
+  source = "github.com/danisla/terraform-google-named-ports"
+  instance_group = "${element(module.cluster2.instance_groups, 2)}"
+  name = "http"
+  port = "30000"
 }
 
 output "cluster1-name" {

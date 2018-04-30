@@ -1,19 +1,16 @@
-variable gke_username {}
-variable gke_password {}
-
-variable region {
+variable "region" {
   default = "us-west1"
 }
 
-variable zone {
+variable "zone" {
   default = "us-west1-b"
 }
 
-variable network_name {
+variable "network_name" {
   default = "tf-gke-k8s"
 }
 
-provider google {
+provider "google" {
   region = "${var.region}"
 }
 
@@ -35,16 +32,17 @@ data "google_container_engine_versions" "default" {
 }
 
 resource "google_container_cluster" "default" {
-  name               = "tf-gke-k8s"
+  name               = "${var.network_name}"
   zone               = "${var.zone}"
   initial_node_count = 3
   min_master_version = "${data.google_container_engine_versions.default.latest_node_version}"
   network            = "${google_compute_subnetwork.default.name}"
   subnetwork         = "${google_compute_subnetwork.default.name}"
 
-  master_auth {
-    username = "${var.gke_username}"
-    password = "${var.gke_password}"
+  // Wait for the GCE LB controller to cleanup the resources.
+  provisioner "local-exec" {
+    when    = "destroy"
+    command = "sleep 90"
   }
 }
 

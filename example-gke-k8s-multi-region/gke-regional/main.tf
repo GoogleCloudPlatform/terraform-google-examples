@@ -30,19 +30,20 @@ variable "subnetwork" {
   default = "default"
 }
 
-data "google_compute_zones" "default" {
-  region = "${var.region}"
-}
+// External data source to fetch latest regional versions (beta).
+data "external" "container-regional-versions-beta" {
+  program = ["${path.module}/get_server_config_beta.sh"]
 
-data "google_container_engine_versions" "default" {
-  zone = "${element(data.google_compute_zones.default.names, 0)}"
+  query = {
+    region = "${var.region}"
+  }
 }
 
 resource "google_container_cluster" "default" {
   name               = "${var.cluster_name}"
   region             = "${var.region}"
   initial_node_count = "${var.node_count}"
-  min_master_version = "${var.master_version != "" ? var.master_version : data.google_container_engine_versions.default.latest_node_version}"
+  min_master_version = "${var.master_version != "" ? var.master_version : data.external.container-regional-versions-beta.result.latest_master_version}"
   network            = "${var.network}"
   subnetwork         = "${var.subnetwork}"
 
@@ -53,6 +54,12 @@ resource "google_container_cluster" "default" {
 
   node_config {
     tags = ["${var.tags}"]
+  }
+
+  // Wait for the GCE LB controller to cleanup the resources.
+  provisioner "local-exec" {
+    when    = "destroy"
+    command = "sleep 90"
   }
 }
 

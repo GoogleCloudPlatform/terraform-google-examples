@@ -1,5 +1,5 @@
 variable "helm_version" {
-  default = "v2.8.2"
+  default = "v2.9.1"
 }
 
 variable "app_name" {
@@ -17,8 +17,7 @@ provider "helm" {
 
   kubernetes {
     host                   = "${google_container_cluster.default.endpoint}"
-    username               = "${var.gke_username}"
-    password               = "${var.gke_password}"
+    token                  = "${data.google_client_config.current.access_token}"
     client_certificate     = "${base64decode(google_container_cluster.default.master_auth.0.client_certificate)}"
     client_key             = "${base64decode(google_container_cluster.default.master_auth.0.client_key)}"
     cluster_ca_certificate = "${base64decode(google_container_cluster.default.master_auth.0.cluster_ca_certificate)}"
@@ -34,13 +33,17 @@ data "template_file" "openapi_spec" {
   template = "${file("${path.module}/openapi_spec.yaml")}"
 
   vars {
-    endpoint_service = "${var.app_name}.endpoints.${data.google_client_config.current.project}.cloud.goog"
+    endpoint_service = "${var.app_name}-${random_id.endpoint-name.hex}.endpoints.${data.google_client_config.current.project}.cloud.goog"
     target           = "${google_compute_address.default.address}"
   }
 }
 
+resource "random_id" "endpoint-name" {
+  byte_length = 2
+}
+
 resource "google_endpoints_service" "openapi_service" {
-  service_name   = "${var.app_name}.endpoints.${data.google_client_config.current.project}.cloud.goog"
+  service_name   = "${var.app_name}-${random_id.endpoint-name.hex}.endpoints.${data.google_client_config.current.project}.cloud.goog"
   project        = "${data.google_client_config.current.project}"
   openapi_config = "${data.template_file.openapi_spec.rendered}"
 }
@@ -65,10 +68,16 @@ resource "helm_release" "nginx-ingress" {
   chart = "stable/nginx-ingress"
 
   values = [<<EOF
+rbac:
+  create: false
 controller:
   service:
     loadBalancerIP: ${google_compute_address.default.address}
 EOF
+  ]
+
+  depends_on = [
+    "helm_release.kube-lego",
   ]
 }
 

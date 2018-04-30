@@ -1,0 +1,145 @@
+# Copyright 2017 Google Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+platform: linux
+inputs:
+- name: git
+- name: git-pull-requests
+  optional: true
+outputs:
+- name: email
+image_resource:
+  type: docker-image
+  source:
+    repository: google/cloud-sdk
+    tag: alpine
+params:
+  git_src:
+  git_target:
+  service_account_json:
+  project_id:
+  backend_bucket:
+  backend_prefix:
+  env_name:
+  zone:
+  example_dir:
+run:
+  path: bash
+  args:
+  - -exc
+  - |
+    set -o pipefail
+    SA_JSON=${PWD}/service_account.json
+    cat > ${SA_JSON} <<EOF
+    $service_account_json
+    EOF
+    apk add --update jq curl autossh openssl ca-certificates
+    gcloud auth activate-service-account --key-file=${SA_JSON}
+    gcloud config set project $project_id
+    gcloud config set compute/zone $zone
+
+    if [[ -n ${compute_ssh_key+x} ]]; then
+      SSH_KEY=${HOME}/.ssh/google_compute_engine
+      mkdir -p ${HOME}/.ssh && chmod 0700 ${HOME}/.ssh
+      cat > ${SSH_KEY} <<EOF
+    $compute_ssh_key
+    EOF
+      chmod 0600 ${SSH_KEY}
+
+      if [[ -z ${compute_ssh_pub+x} ]]; then
+        echo "ERROR: Missing compute_ssh_pub variable"
+        exit 1
+      fi
+
+      SSH_PUB=${HOME}/.ssh/google_compute_engine.pub
+      cat > ${SSH_PUB} <<EOF
+    $compute_ssh_pub
+    EOF
+    fi
+
+    BASE_DIR=${PWD}
+
+    TEST_DIR=${BASE_DIR}/${git_src}/${example_dir}
+
+    function cleanup {
+      cd ${TEST_DIR}/ && terraform destroy -input=false -lock=false -auto-approve
+    }
+    trap cleanup EXIT
+
+    cd ${git_src}
+
+    module_name=$(basename $backend_prefix)
+
+    # Setup email
+    EMAIL=${BASE_DIR}/email
+    echo "${module_name}/${env_name}: Failed to run example" > ${EMAIL}/subject-failed
+    git --no-pager show > ${EMAIL}/body-failed
+
+    # Install latest terraform
+    bash ./terraform-install.sh
+    source ${HOME}/.bashrc
+    terraform version
+
+    # Run init script if provided
+    if [[ -n ${init_script+x} ]]; then
+      INIT_SCRIPT=${PWD}/init_script.sh
+      cat > ${INIT_SCRIPT} <<EOF
+    $init_script
+    EOF
+      bash -xe ${INIT_SCRIPT}
+    fi
+
+    # Env for terraform google provider
+    export GOOGLE_APPLICATION_CREDENTIALS=${SA_JSON}
+    export GOOGLE_PROJECT=$project_id
+
+    ### Begin Terraform example test
+    cd ${TEST_DIR}
+
+    cat > backend.tf <<EOF
+    terraform {
+      backend "gcs" {
+        bucket     = "${backend_bucket}"
+        prefix     = "${backend_prefix}"
+      }
+    }
+    EOF
+
+    # Apply and test function
+    function apply_and_run_test() {
+      terraform init -no-color -upgrade=true
+      terraform workspace select ${env_name} || terraform workspace new ${env_name}
+      terraform plan -lock=false -no-color -out terraform.tfplan
+      terraform apply -no-color -input=false -lock=false -auto-approve terraform.tfplan | tee ${EMAIL}/body-failed
+
+      echo "" > ${EMAIL}/body-failed
+      bash -xe ./test.sh | tee ${EMAIL}/body-failed
+    }
+
+    # Run Terraform and tests
+    apply_and_run_test
+
+    ### Begin upgrade test
+    if [[ "${git_src}" != "${git_target}" ]]; then
+      
+      PR_TEST_DIR="${BASE_DIR}/${git_target}/${example_dir}"
+
+      # Copy remote backend
+      cp "${TEST_DIR}/backend.tf" "${PR_TEST_DIR}/"
+
+      cd ${PR_TEST_DIR}
+
+      ### Upgrade test
+      apply_and_run_test
+    fi
