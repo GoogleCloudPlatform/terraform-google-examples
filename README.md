@@ -36,6 +36,7 @@ __Table of Contents__
 1. [example-gke-k8s-helm](#example-gke-k8s-helm)
 1. [example-gke-k8s-service-lb](#example-gke-k8s-service-lb)
 1. [example-gke-k8s-multi-region](#example-gke-k8s-multi-region)
+1. [example-custom-machine-types](#example-custom-machine-types)
 
 ## [example-lb](https://github.com/GoogleCloudPlatform/terraform-google-lb/tree/master/examples/basic)
 
@@ -169,3 +170,12 @@ Example showing how to create a Kubernetes Service tpye LoadBalancer to GKE from
 Example showing how to create an L7 HTTP load balancer across multiple regional GKE clusters.
 
 <img src="https://github.com/GoogleCloudPlatform/terraform-google-examples/raw/master/example-gke-k8s-multi-region/diagram.png" width="800px"></img>
+
+
+## [example-custom-machine-types](https://github.com/GoogleCloudPlatform/terraform-google-examples/tree/master/example-custom-machine-types)
+
+[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-examples&page=editor&tutorial=example-custom-machine-types/README.md)
+
+Example showing how to create custom machine types with bastion host and NAT gateway.
+
+<img src="https://github.com/GoogleCloudPlatform/terraform-google-examples/raw/master/example-custom-machine-types/diagram.png" width="800px"></img>
