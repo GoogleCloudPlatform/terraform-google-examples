@@ -75,7 +75,8 @@ data "google_compute_image" "bastion" {
 }
 
 module "bastion" {
-  source             = "github.com/GoogleCloudPlatform/terraform-google-managed-instance-group"
+  source             = "GoogleCloudPlatform/managed-instance-group/google"
+  version            = "1.1.13"
   region             = "${var.region}"
   zone               = "${var.zone}"
   network            = "${google_compute_subnetwork.default.name}"
@@ -92,7 +93,8 @@ module "bastion" {
 
 // NAT gateway
 module "nat-gateway" {
-  source     = "github.com/GoogleCloudPlatform/terraform-google-nat-gateway"
+  source     = "GoogleCloudPlatform/nat-gateway/google"
+  version    = "1.2.0"
   region     = "${var.region}"
   zone       = "${var.zone}"
   network    = "${google_compute_subnetwork.default.name}"

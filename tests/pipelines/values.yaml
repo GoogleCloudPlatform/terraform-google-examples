@@ -1,0 +1,7 @@
+maintainer_email: disla@google.com
+backend_bucket: concourse-terraform-remote-backend
+
+uri: https://github.com/GoogleCloudPlatform/terraform-google-examples.git
+branch: master
+github_owner: GoogleCloudPlatform
+github_repo: terraform-google-examples

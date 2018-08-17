@@ -1,19 +1,16 @@
-variable gke_username {}
-variable gke_password {}
-
-variable region {
+variable "region" {
   default = "us-west1"
 }
 
-variable zone {
+variable "zone" {
   default = "us-west1-b"
 }
 
-variable network_name {
+variable "network_name" {
   default = "tf-gke-helm"
 }
 
-provider google {
+provider "google" {
   region = "${var.region}"
 }
 
@@ -49,28 +46,29 @@ resource "google_container_cluster" "default" {
   //   https://github.com/terraform-providers/terraform-provider-kubernetes/pull/73
   enable_legacy_abac = true
 
-  master_auth {
-    username = "${var.gke_username}"
-    password = "${var.gke_password}"
+  // Wait for the GCE LB controller to cleanup the resources.
+  provisioner "local-exec" {
+    when    = "destroy"
+    command = "sleep 90"
   }
 }
 
-output network {
+output "network" {
   value = "${google_compute_subnetwork.default.network}"
 }
 
-output subnetwork_name {
+output "subnetwork_name" {
   value = "${google_compute_subnetwork.default.name}"
 }
 
-output cluster_name {
+output "cluster_name" {
   value = "${google_container_cluster.default.name}"
 }
 
-output cluster_region {
+output "cluster_region" {
   value = "${var.region}"
 }
 
-output cluster_zone {
+output "cluster_zone" {
   value = "${google_container_cluster.default.zone}"
 }

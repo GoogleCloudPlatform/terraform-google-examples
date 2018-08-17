@@ -10,11 +10,10 @@ This example creates an instance with a custom machine type, a bastion host and 
 
 ## Install Terraform
 
-Install Terraform on Linux if it is not already installed (visit [terraform.io](https://terraform.io) for other distributions):
+Install Terraform if it is not already installed (visit [terraform.io](https://terraform.io) for other distributions):
 
 ```
-curl -sL https://goo.gl/UYp3WG | bash
-source ${HOME}/.bashrc
+./terraform-install.sh
 ```
 
 ## Setup Environment

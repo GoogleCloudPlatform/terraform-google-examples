@@ -1,0 +1,393 @@
+# Copyright 2017 Google Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+jobs:
+###
+# terraform-google-lb
+###
+- name: check-terraform-google-lb
+  serial: true
+  plan:
+  - get: once-a-week
+    trigger: true
+
+  - get: terraform-google-lb
+    trigger: false
+
+  - get: task-script
+ 
+  - task: check-repo
+    on_failure:
+      put: send-an-email
+      params:
+        subject: email/subject-failed
+        body: email/body-failed
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: google/cloud-sdk
+          tag: alpine
+      inputs:
+      - name: terraform-google-lb
+      - name: task-script
+      outputs:
+      - name: email
+      params:
+        repo_name: terraform-google-lb
+      run:
+        path: task-script/check-release.sh
+
+###
+# terraform-google-lb-http
+###
+- name: check-terraform-google-lb-http
+  serial: true
+  plan:
+  - get: once-a-week
+    trigger: true
+
+  - get: terraform-google-lb-http
+    trigger: false
+
+  - get: task-script
+ 
+  - task: check-repo
+    on_failure:
+      put: send-an-email
+      params:
+        subject: email/subject-failed
+        body: email/body-failed
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: google/cloud-sdk
+          tag: alpine
+      inputs:
+      - name: terraform-google-lb-http
+      - name: task-script
+      outputs:
+      - name: email
+      params:
+        repo_name: terraform-google-lb-http
+      run:
+        path: task-script/check-release.sh
+
+###
+# terraform-google-lb-internal
+###
+- name: check-terraform-google-lb-internal
+  serial: true
+  plan:
+  - get: once-a-week
+    trigger: true
+
+  - get: terraform-google-lb-internal
+    trigger: false
+
+  - get: task-script
+ 
+  - task: check-repo
+    on_failure:
+      put: send-an-email
+      params:
+        subject: email/subject-failed
+        body: email/body-failed
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: google/cloud-sdk
+          tag: alpine
+      inputs:
+      - name: terraform-google-lb-internal
+      - name: task-script
+      outputs:
+      - name: email
+      params:
+        repo_name: terraform-google-lb-internal
+      run:
+        path: task-script/check-release.sh
+
+###
+# terraform-google-nat-gateway
+###
+- name: check-terraform-google-nat-gateway
+  serial: true
+  plan:
+  - get: once-a-week
+    trigger: true
+
+  - get: terraform-google-nat-gateway
+    trigger: false
+
+  - get: task-script
+ 
+  - task: check-repo
+    on_failure:
+      put: send-an-email
+      params:
+        subject: email/subject-failed
+        body: email/body-failed
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: google/cloud-sdk
+          tag: alpine
+      inputs:
+      - name: terraform-google-nat-gateway
+      - name: task-script
+      outputs:
+      - name: email
+      params:
+        repo_name: terraform-google-nat-gateway
+      run:
+        path: task-script/check-release.sh
+
+###
+# terraform-google-managed-instance-group
+###
+- name: check-terraform-google-managed-instance-group
+  serial: true
+  plan:
+  - get: once-a-week
+    trigger: true
+
+  - get: terraform-google-managed-instance-group
+    trigger: false
+
+  - get: task-script
+ 
+  - task: check-repo
+    on_failure:
+      put: send-an-email
+      params:
+        subject: email/subject-failed
+        body: email/body-failed
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: google/cloud-sdk
+          tag: alpine
+      inputs:
+      - name: terraform-google-managed-instance-group
+      - name: task-script
+      outputs:
+      - name: email
+      params:
+        repo_name: terraform-google-managed-instance-group
+      run:
+        path: task-script/check-release.sh
+
+###
+# terraform-google-k8s-gce
+###
+- name: check-terraform-google-k8s-gce
+  serial: true
+  plan:
+  - get: once-a-week
+    trigger: true
+
+  - get: terraform-google-k8s-gce
+    trigger: false
+
+  - get: task-script
+ 
+  - task: check-repo
+    on_failure:
+      put: send-an-email
+      params:
+        subject: email/subject-failed
+        body: email/body-failed
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: google/cloud-sdk
+          tag: alpine
+      inputs:
+      - name: terraform-google-k8s-gce
+      - name: task-script
+      outputs:
+      - name: email
+      params:
+        repo_name: terraform-google-k8s-gce
+      run:
+        path: task-script/check-release.sh
+
+###
+# terraform-google-elasticsearch
+###
+- name: check-terraform-google-elasticsearch
+  serial: true
+  plan:
+  - get: once-a-week
+    trigger: true
+
+  - get: terraform-google-elasticsearch
+    trigger: false
+
+  - get: task-script
+ 
+  - task: check-repo
+    on_failure:
+      put: send-an-email
+      params:
+        subject: email/subject-failed
+        body: email/body-failed
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: google/cloud-sdk
+          tag: alpine
+      inputs:
+      - name: terraform-google-elasticsearch
+      - name: task-script
+      outputs:
+      - name: email
+      params:
+        repo_name: terraform-google-elasticsearch
+      run:
+        path: task-script/check-release.sh
+
+###
+# Resource types
+###
+resource_types:
+- name: git
+  type: docker-image
+  source:
+    repository: concourse/git-resource
+
+- name: script
+  type: docker-image
+  source:
+    repository: cfcommunity/script-resource
+
+- name: time
+  type: docker-image
+  source:
+    repository: concourse/time-resource
+
+- name: email
+  type: docker-image
+  source:
+    repository: pcfseceng/email-resource
+
+###
+# Resources
+###
+resources:
+- name: task-script
+  type: script
+  source:
+    shell: /bin/bash
+    filename: check-release.sh
+    body: |
+      set -x
+      set -e
+      set -o pipefail
+
+      BASE_DIR=${PWD}
+
+      cd "${repo_name}"
+
+      # Setup email
+      EMAIL=${BASE_DIR}/email
+      echo "tf-module-releases/${repo_name}: Failed" > ${EMAIL}/subject-failed
+      git log --pretty=oneline --abbrev-commit --graph --decorate |tee ${EMAIL}/body-failed
+  
+      LATEST_TAG=$(git tag|tail -1)
+      TAG_COMMIT=$(git rev-list -n 1 ${LATEST_TAG})
+      COMMIT_NUM=$(git log --pretty=oneline | grep -n ${TAG_COMMIT} | cut -d: -f1)
+      (( COMMIT_NUM-=COMMIT_NUM )) || true
+      
+      if [[ "${COMMIT_NUM}" -gt 1 ]]; then
+        echo "WARN: ${repo_name} master branch is behind latest release tag ${LATEST_TAG} by ${COMMIT_NUM} commits" | tee -a ${EMAIL}/body-failed
+        exit 1
+      fi
+      echo "INFO: ${repo_name} repo master is in sync with latest release tag"
+      exit 0
+      
+- name: once-a-week
+  type: time
+  source:
+    interval: 168h
+
+- name: send-an-email
+  type: email
+  source:
+    smtp:
+      host: ((common.smtp_host))
+      port: ((common.smtp_port))
+      username: ((common.smtp_username))
+      password: ((common.smtp_password))
+    from: concourse-tf@gcp.solutions
+    to: [ {{maintainer_email}} ]
+
+###
+# Repo resources
+###
+- name: terraform-google-lb
+  type: git
+  source:
+    uri: https://github.com/GoogleCloudPlatform/terraform-google-lb
+    branch: master
+
+- name: terraform-google-lb-http
+  type: git
+  source:
+    uri: https://github.com/GoogleCloudPlatform/terraform-google-lb-http
+    branch: master
+
+- name: terraform-google-lb-internal
+  type: git
+  source:
+    uri: https://github.com/GoogleCloudPlatform/terraform-google-lb-internal
+    branch: master
+
+- name: terraform-google-nat-gateway
+  type: git
+  source:
+    uri: https://github.com/GoogleCloudPlatform/terraform-google-nat-gateway
+    branch: master
+
+- name: terraform-google-managed-instance-group
+  type: git
+  source:
+    uri: https://github.com/GoogleCloudPlatform/terraform-google-managed-instance-group
+    branch: master
+
+- name: terraform-google-k8s-gce
+  type: git
+  source:
+    uri: https://github.com/GoogleCloudPlatform/terraform-google-k8s-gce
+    branch: master
+
+- name: terraform-google-elasticsearch
+  type: git
+  source:
+    uri: https://github.com/danisla/terraform-google-elasticsearch
+    branch: master
