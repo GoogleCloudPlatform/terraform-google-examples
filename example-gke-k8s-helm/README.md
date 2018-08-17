@@ -25,6 +25,9 @@ cd example-gke-k8s-helm/
 
 ```
 PROJECT=YOUR_PROJECT
+```
+
+```
 gcloud config set project ${PROJECT}
 ```
 

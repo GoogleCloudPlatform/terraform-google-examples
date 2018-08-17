@@ -26,6 +26,9 @@ Set the project, replace `YOUR_PROJECT` with your project ID:
 
 ```
 PROJECT=YOUR_PROJECT
+```
+
+```
 gcloud config set project ${PROJECT}
 ```
 
