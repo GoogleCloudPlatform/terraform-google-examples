@@ -1,5 +1,18 @@
 # Kubernetes Engine and Helm Example
 
+[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-examples&page=editor&tutorial=example-custom-machine-types/README.md)
+
+<a href="https://concourse-tf.gcp.solutions/teams/main/pipelines/tf-examples-gke-k8s-helm" target="_blank">
+<img src="https://concourse-tf.gcp.solutions/api/v1/teams/main/pipelines/tf-examples-gke-k8s-helm/badge" /></a>
+
+## Install Terraform
+
+Install Terraform if it is not already installed (visit [terraform.io](https://terraform.io) for other distributions):
+
+```
+./terraform-install.sh
+```
+
 ## Set up the environment
 
 ```
@@ -15,7 +28,7 @@ This example creates a Cloud Endpoints service and requires that the Service Man
 gcloud services enable servicemanagement.googleapis.com
 ```
 
-### Install helm
+## Install helm
 
 ```
 curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
@@ -25,22 +38,10 @@ chmod 700 get_helm.sh
 helm init --client-only
 ```
 
-### Install the helm provider
-
-MacOS:
+## Install the helm provider
 
 ```
-wget https://github.com/mcuadros/terraform-provider-helm/releases/download/v0.5.1/terraform-provider-helm_v0.5.1_darwin_amd64.tar.gz
-tar -xvf terraform-provider-helm*.tar.gz
-
-mkdir -p ~/.terraform.d/plugins/
-mv terraform-provider-helm*/terraform-provider-helm ~/.terraform.d/plugins/
-```
-
-Linux:
-
-```
-wget https://github.com/mcuadros/terraform-provider-helm/releases/download/v0.5.1/terraform-provider-helm_v0.5.1_linux_amd64.tar.gz
+wget https://github.com/mcuadros/terraform-provider-helm/releases/download/v0.5.1/terraform-provider-helm_v0.5.1_$(uname | tr '[:upper:]' '[:lower:]')_amd64.tar.gz
 tar -xvf terraform-provider-helm*.tar.gz
 
 mkdir -p ~/.terraform.d/plugins/
@@ -75,7 +76,7 @@ terraform apply
 After the Drupal pods start and are ready, open the interface by navigating to the URL:
 
 ```
-open https://$(terraform output endpoint)
+echo https://$(terraform output endpoint)
 ```
 
 Login with the credentials displayed in the following commands:
