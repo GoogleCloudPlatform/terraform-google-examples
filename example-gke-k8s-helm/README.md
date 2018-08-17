@@ -7,6 +7,14 @@ gcloud auth application-default login
 export GOOGLE_PROJECT=$(gcloud config get-value project)
 ```
 
+## Enable service management API
+
+This example creates a Cloud Endpoints service and requires that the Service Manangement API is enabled.
+
+```
+gcloud services enable servicemanagement.googleapis.com
+```
+
 ### Install helm
 
 ```

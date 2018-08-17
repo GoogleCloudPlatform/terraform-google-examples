@@ -13,15 +13,6 @@ gcloud auth application-default login
 export GOOGLE_PROJECT=$(gcloud config get-value project)
 ```
 
-## Create the `terraform.tfvars` file
-
-```
-cat > terraform.tfvars <<EOF
-gke_username = "admin"
-gke_password = "$(openssl rand -base64 16)"
-EOF
-```
-
 ## Run Terraform
 
 ```

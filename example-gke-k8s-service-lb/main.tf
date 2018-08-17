@@ -27,6 +27,8 @@ resource "google_compute_subnetwork" "default" {
   private_ip_google_access = true
 }
 
+data "google_client_config" "current" {}
+
 data "google_container_engine_versions" "default" {
   zone = "${var.zone}"
 }
@@ -38,6 +40,11 @@ resource "google_container_cluster" "default" {
   min_master_version = "${data.google_container_engine_versions.default.latest_node_version}"
   network            = "${google_compute_subnetwork.default.name}"
   subnetwork         = "${google_compute_subnetwork.default.name}"
+
+  // Use legacy ABAC until these issues are resolved: 
+  //   https://github.com/mcuadros/terraform-provider-helm/issues/56
+  //   https://github.com/terraform-providers/terraform-provider-kubernetes/pull/73
+  enable_legacy_abac = true
 
   // Wait for the GCE LB controller to cleanup the resources.
   provisioner "local-exec" {

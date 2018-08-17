@@ -1,6 +1,3 @@
-variable "gke_username" {}
-variable "gke_password" {}
-
 variable "region1_cluster_name" {
   default = "tf-region1"
 }
@@ -50,8 +47,6 @@ module "cluster1" {
   source       = "./gke-regional"
   region       = "${var.region1}"
   cluster_name = "${var.region1_cluster_name}"
-  gke_username = "${var.gke_username}"
-  gke_password = "${var.gke_password}"
   tags         = ["tf-gke-region1"]
   network      = "${google_compute_subnetwork.region1.network}"
   subnetwork   = "${google_compute_subnetwork.region1.name}"
@@ -61,8 +56,6 @@ module "cluster2" {
   source       = "./gke-regional"
   region       = "${var.region2}"
   cluster_name = "${var.region2_cluster_name}"
-  gke_username = "${var.gke_username}"
-  gke_password = "${var.gke_password}"
   tags         = ["tf-gke-region2"]
   network      = "${google_compute_subnetwork.region2.network}"
   subnetwork   = "${google_compute_subnetwork.region2.name}"
@@ -71,8 +64,7 @@ module "cluster2" {
 provider "kubernetes" {
   alias                  = "cluster1"
   host                   = "${module.cluster1.endpoint}"
-  username               = "${var.gke_username}"
-  password               = "${var.gke_password}"
+  token                  = "${data.google_client_config.current.access_token}"
   client_certificate     = "${base64decode(module.cluster1.client_certificate)}"
   client_key             = "${base64decode(module.cluster1.client_key)}"
   cluster_ca_certificate = "${base64decode(module.cluster1.cluster_ca_certificate)}"
@@ -81,8 +73,7 @@ provider "kubernetes" {
 provider "kubernetes" {
   alias                  = "cluster2"
   host                   = "${module.cluster2.endpoint}"
-  username               = "${var.gke_username}"
-  password               = "${var.gke_password}"
+  token                  = "${data.google_client_config.current.access_token}"
   client_certificate     = "${base64decode(module.cluster2.client_certificate)}"
   client_key             = "${base64decode(module.cluster2.client_key)}"
   cluster_ca_certificate = "${base64decode(module.cluster2.cluster_ca_certificate)}"

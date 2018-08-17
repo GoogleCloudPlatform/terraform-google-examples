@@ -6,9 +6,6 @@ variable "cluster_name" {
   default = "tf-regional"
 }
 
-variable "gke_username" {}
-variable "gke_password" {}
-
 variable "master_version" {
   default = ""
 }
@@ -30,27 +27,26 @@ variable "subnetwork" {
   default = "default"
 }
 
-// External data source to fetch latest regional versions (beta).
-data "external" "container-regional-versions-beta" {
-  program = ["${path.module}/get_server_config_beta.sh"]
+data "google_compute_zones" "available" {
+  region = "${var.region}"
+}
 
-  query = {
-    region = "${var.region}"
-  }
+data "google_container_engine_versions" "default" {
+  zone = "${element(data.google_compute_zones.available.names, 0)}"
 }
 
 resource "google_container_cluster" "default" {
   name               = "${var.cluster_name}"
   region             = "${var.region}"
   initial_node_count = "${var.node_count}"
-  min_master_version = "${var.master_version != "" ? var.master_version : data.external.container-regional-versions-beta.result.latest_master_version}"
+  min_master_version = "${var.master_version != "" ? var.master_version : data.google_container_engine_versions.default.latest_master_version}"
   network            = "${var.network}"
   subnetwork         = "${var.subnetwork}"
 
-  master_auth {
-    username = "${var.gke_username}"
-    password = "${var.gke_password}"
-  }
+  // Use legacy ABAC until these issues are resolved: 
+  //   https://github.com/mcuadros/terraform-provider-helm/issues/56
+  //   https://github.com/terraform-providers/terraform-provider-kubernetes/pull/73
+  enable_legacy_abac = true
 
   node_config {
     tags = ["${var.tags}"]
