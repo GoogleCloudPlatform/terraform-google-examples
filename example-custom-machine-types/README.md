@@ -10,19 +10,21 @@ This example creates an instance with a custom machine type, a bastion host and 
 
 ## Install Terraform
 
-Install Terraform if it is not already installed (visit [terraform.io](https://terraform.io) for other distributions):
+1. Install Terraform if it is not already installed (visit [terraform.io](https://terraform.io) for other distributions):
 
 ```
 ./terraform-install.sh
 ```
 
-## Set up the environment
+## Change to the example directory
 
 ```
 cd example-custom-machine-types/
 ```
 
-Set the project, replace `YOUR_PROJECT` with your project ID:
+## Set up the environment
+
+1. Set the project, replace `YOUR_PROJECT` with your project ID:
 
 ```
 PROJECT=YOUR_PROJECT
@@ -32,6 +34,8 @@ PROJECT=YOUR_PROJECT
 gcloud config set project ${PROJECT}
 ```
 
+2. Configure the environment for Terraform:
+
 ```
 [[ $CLOUD_SHELL ]] || gcloud auth application-default login
 export GOOGLE_PROJECT=$(gcloud config get-value project)
@@ -39,7 +43,7 @@ export GOOGLE_PROJECT=$(gcloud config get-value project)
 
 ## Configure remote backend
 
-Configure Terraform [remote backend](https://www.terraform.io/docs/backends/types/gcs.html) for the state file.
+1. Configure Terraform [remote backend](https://www.terraform.io/docs/backends/types/gcs.html) for the state file.
 
 ```
 BUCKET=${GOOGLE_PROJECT}-terraform
@@ -68,7 +72,7 @@ terraform apply
 
 ## Testing
 
-SSH into the bastion host with port forwarding to Cerebro and Kibana:
+1. SSH into the bastion host with port forwarding to Cerebro and Kibana:
 
 ```
 eval $(ssh-agent)
@@ -76,13 +80,13 @@ ssh-add ~/.ssh/google_compute_engine
 eval $(terraform output bastion)
 ```
 
-SSH into the custom machine:
+2. SSH into the custom machine:
 
 ```
 ssh tf-custom-1
 ```
 
-Verify external IP is the IP of the NAT gateway:
+3. Verify external IP is the IP of the NAT gateway:
 
 ```
 curl http://ipinfo.io/ip
@@ -90,13 +94,13 @@ curl http://ipinfo.io/ip
 
 ## Cleanup
 
-Exit the ssh sessions:
+1. Exit the ssh sessions:
 
 ```
 exit
 ```
 
-Remove all resources created by terraform:
+2. Remove all resources created by terraform:
 
 ```
 terraform destroy
