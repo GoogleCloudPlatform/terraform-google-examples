@@ -95,8 +95,7 @@ gcloud endpoints services undelete drupal.endpoints.$(gcloud config get-value pr
 
 ```
 terraform init
-terraform plan -out terraform.tfplan
-terraform apply terraform.tfplan
+terraform apply
 ```
 
 ## Testing
