@@ -16,7 +16,7 @@ Install Terraform if it is not already installed (visit [terraform.io](https://t
 ./terraform-install.sh
 ```
 
-## Setup Environment
+## Set up the environment
 
 ```
 cd example-custom-machine-types/
@@ -25,11 +25,12 @@ cd example-custom-machine-types/
 Set the project, replace `YOUR_PROJECT` with your project ID:
 
 ```
-gcloud config set project YOUR_PROJECT
+PROJECT=YOUR_PROJECT
+gcloud config set project ${PROJECT}
 ```
 
 ```
-test -z DEVSHELL_GCLOUD_CONFIG && gcloud auth application-default login
+[[ $CLOUD_SHELL ]] || gcloud auth application-default login
 export GOOGLE_PROJECT=$(gcloud config get-value project)
 ```
 
