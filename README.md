@@ -179,6 +179,8 @@ Example showing how to create a Kubernetes Service tpye LoadBalancer to GKE from
 
 Example showing how to create an L7 HTTP load balancer across multiple regional GKE clusters.
 
+[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-examples&page=editor&tutorial=example-gke-k8s-multi-region/README.md)
+
 <a href="https://concourse-tf.gcp.solutions/teams/main/pipelines/tf-examples-gke-multi-region" target="_blank">
 <img src="https://concourse-tf.gcp.solutions/api/v1/teams/main/pipelines/tf-examples-gke-multi-region/badge" /></a>
 

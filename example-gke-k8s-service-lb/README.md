@@ -74,3 +74,11 @@ gcloud container clusters get-credentials $(terraform output cluster_name) --zon
 ```
 kubectl get pods -n staging
 ```
+
+## Cleanup
+
+1. Delete resources created by terraform:
+
+```
+terraform destroy
+```
