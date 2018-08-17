@@ -161,13 +161,22 @@ Modules used:
 
 Example showing how to deploy Helm releases to GKE from Terraform
 
+<a href="https://concourse-tf.gcp.solutions/teams/main/pipelines/tf-examples-gke-k8s-helm" target="_blank">
+<img src="https://concourse-tf.gcp.solutions/api/v1/teams/main/pipelines/tf-examples-gke-k8s-helm/badge" /></a>
+
 ## [example-gke-k8s-service-lb](https://github.com/GoogleCloudPlatform/terraform-google-examples/tree/master/example-gke-k8s-service-lb)
 
 Example showing how to create a Kubernetes Service tpye LoadBalancer to GKE from Terraform
 
+<a href="https://concourse-tf.gcp.solutions/teams/main/pipelines/tf-examples-gke-service-lb" target="_blank">
+<img src="https://concourse-tf.gcp.solutions/api/v1/teams/main/pipelines/tf-examples-gke-service-lb/badge" /></a>
+
 ## [example-gke-k8s-multi-region](https://github.com/GoogleCloudPlatform/terraform-google-examples/tree/master/example-gke-k8s-multi-region)
 
 Example showing how to create an L7 HTTP load balancer across multiple regional GKE clusters.
+
+<a href="https://concourse-tf.gcp.solutions/teams/main/pipelines/tf-examples-gke-multi-region" target="_blank">
+<img src="https://concourse-tf.gcp.solutions/api/v1/teams/main/pipelines/tf-examples-gke-multi-region/badge" /></a>
 
 <img src="https://github.com/GoogleCloudPlatform/terraform-google-examples/raw/master/example-gke-k8s-multi-region/diagram.png" width="800px"></img>
 
