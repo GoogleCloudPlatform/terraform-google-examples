@@ -42,7 +42,7 @@ __Table of Contents__
 
 Example showing how to create a TCP load balancer.
 
-[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-lb&page=editor&tutorial=examples/basic/README.md)
+[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-lb&working_dir=examples/basic&page=shell&tutorial=README.md)
 
 <a href="https://concourse-tf.gcp.solutions/teams/main/pipelines/tf-examples-lb-basic" target="_blank">
 <img src="https://concourse-tf.gcp.solutions/api/v1/teams/main/pipelines/tf-examples-lb-basic/badge" /></a>
