@@ -1,22 +1,22 @@
 # Kubernetes Engine and Helm Example
 
-[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-examples&page=editor&tutorial=example-gke-k8s-helm/README.md)
+[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-examples&working_dir=example-gke-k8s-helm&page=shell&tutorial=README.md)
 
 <a href="https://concourse-tf.gcp.solutions/teams/main/pipelines/tf-examples-gke-k8s-helm" target="_blank">
 <img src="https://concourse-tf.gcp.solutions/api/v1/teams/main/pipelines/tf-examples-gke-k8s-helm/badge" /></a>
+
+## Change to the example directory
+
+```
+[[ `basename $PWD` != example-gke-k8s-helm ]] && cd example-gke-k8s-helm
+```
 
 ## Install Terraform
 
 1. Install Terraform if it is not already installed (visit [terraform.io](https://terraform.io) for other distributions):
 
 ```
-./terraform-install.sh
-```
-
-## Change to the example directory
-
-```
-cd example-gke-k8s-helm/
+../terraform-install.sh
 ```
 
 ## Set up the environment

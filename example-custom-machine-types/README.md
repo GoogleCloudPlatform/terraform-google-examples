@@ -1,6 +1,6 @@
 # Custom Machine Types
 
-[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-examples&page=editor&tutorial=example-custom-machine-types/README.md)
+[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-examples&working_dir=example-custom-machine-types&page=shell&tutorial=README.md)
 
 This example creates an instance with a custom machine type, a bastion host and a NAT gateway.
 
@@ -8,18 +8,18 @@ This example creates an instance with a custom machine type, a bastion host and 
 
 ![architecture diagram](./diagram.png)
 
+## Change to the example directory
+
+```
+[[ `basename $PWD` != example-custom-machine-types ]] && cd example-custom-machine-types
+```
+
 ## Install Terraform
 
 1. Install Terraform if it is not already installed (visit [terraform.io](https://terraform.io) for other distributions):
 
 ```
-./terraform-install.sh
-```
-
-## Change to the example directory
-
-```
-cd example-custom-machine-types/
+../terraform-install.sh
 ```
 
 ## Set up the environment

@@ -168,16 +168,16 @@ Modules used:
 
 Example showing how to deploy Helm releases to GKE from Terraform
 
-[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-examples&page=editor&tutorial=example-gke-k8s-helm/README.md)
+[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-examples&working_dir=example-gke-k8s-helm&page=shell&tutorial=README.md)
 
 <a href="https://concourse-tf.gcp.solutions/teams/main/pipelines/tf-examples-gke-k8s-helm" target="_blank">
 <img src="https://concourse-tf.gcp.solutions/api/v1/teams/main/pipelines/tf-examples-gke-k8s-helm/badge" /></a>
 
 ## [example-gke-k8s-service-lb](https://github.com/GoogleCloudPlatform/terraform-google-examples/tree/master/example-gke-k8s-service-lb)
 
-Example showing how to create a Kubernetes Service tpye LoadBalancer to GKE from Terraform
+Example showing how to create a Kubernetes Service type LoadBalancer to GKE from Terraform
 
-[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-examples&page=editor&tutorial=example-gke-service-lb/README.md)
+[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-examples&working_dir=example-gke-k8s-service-lb&page=shell&tutorial=README.md)
 
 <a href="https://concourse-tf.gcp.solutions/teams/main/pipelines/tf-examples-gke-service-lb" target="_blank">
 <img src="https://concourse-tf.gcp.solutions/api/v1/teams/main/pipelines/tf-examples-gke-service-lb/badge" /></a>
@@ -186,17 +186,16 @@ Example showing how to create a Kubernetes Service tpye LoadBalancer to GKE from
 
 Example showing how to create an L7 HTTP load balancer across multiple regional GKE clusters.
 
-[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-examples&page=editor&tutorial=example-gke-k8s-multi-region/README.md)
+[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-examples&working_dir=example-gke-k8s-multi-region&page=shell&tutorial=README.md)
 
 <a href="https://concourse-tf.gcp.solutions/teams/main/pipelines/tf-examples-gke-multi-region" target="_blank">
 <img src="https://concourse-tf.gcp.solutions/api/v1/teams/main/pipelines/tf-examples-gke-multi-region/badge" /></a>
 
 <img src="https://github.com/GoogleCloudPlatform/terraform-google-examples/raw/master/example-gke-k8s-multi-region/diagram.png" width="800px"></img>
 
-
 ## [example-custom-machine-types](https://github.com/GoogleCloudPlatform/terraform-google-examples/tree/master/example-custom-machine-types)
 
-[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-examples&page=editor&tutorial=example-custom-machine-types/README.md)
+[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-examples&working_dir=example-custom-machine-types&page=shell&tutorial=README.md)
 
 Example showing how to create custom machine types with bastion host and NAT gateway.
 

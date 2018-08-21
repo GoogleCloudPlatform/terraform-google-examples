@@ -2,7 +2,7 @@
 
 This example shows how to do multi-region ingress using an L7 HTTP Load Balancer with regional clusters.
 
-[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-examples&page=editor&tutorial=example-gke-k8s-multi-region/README.md)
+[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-examples&working_dir=example-gke-k8s-multi-region&page=shell&tutorial=README.md)
 
 <a href="https://concourse-tf.gcp.solutions/teams/main/pipelines/tf-examples-gke-multi-region" target="_blank">
 <img src="https://concourse-tf.gcp.solutions/api/v1/teams/main/pipelines/tf-examples-gke-multi-region/badge" /></a>
@@ -11,18 +11,18 @@ This example shows how to do multi-region ingress using an L7 HTTP Load Balancer
 
 ![architecture diagram](./diagram.png)
 
+## Change to the example directory
+
+```
+[[ `basename $PWD` != example-gke-k8s-multi-region ]] && cd example-gke-k8s-multi-region
+```
+
 ## Install Terraform
 
 1. Install Terraform if it is not already installed (visit [terraform.io](https://terraform.io) for other distributions):
 
 ```
-./terraform-install.sh
-```
-
-## Change to the example directory
-
-```
-cd example-gke-k8s-multi-region/
+../terraform-install.sh
 ```
 
 ## Set up the environment
