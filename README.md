@@ -56,7 +56,7 @@ Modules used:
 - [terraform-google-managed-instance-group](https://github.com/GoogleCloudPlatform/terraform-google-managed-instance-group)
 - [terraform-google-lb](https://github.com/GoogleCloudPlatform/terraform-google-lb)
 
-## [example-lb-http](https://github.com/GoogleCloudPlatform/terraform-google-lb/tree/master/examples/basic)
+## [example-lb-http](https://github.com/GoogleCloudPlatform/terraform-google-lb-http/tree/master/examples/basic)
 
 [![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-lb-http&working_dir=examples/basic&page=shell&tutorial=README.md)
 
