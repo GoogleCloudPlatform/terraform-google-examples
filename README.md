@@ -84,6 +84,11 @@ Modules used:
 
 ## [example-lb-http-nat-gateway](https://github.com/GoogleCloudPlatform/terraform-google-lb-http/tree/master/examples/http-nat-gateway)
 
+[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-lb-http&working_dir=examples/http-nat-gateway&page=shell&tutorial=README.md)
+
+<a href="https://concourse-tf.gcp.solutions/teams/main/pipelines/tf-examples-lb-http-nat-gw" target="_blank">
+<img src="https://concourse-tf.gcp.solutions/api/v1/teams/main/pipelines/tf-examples-lb-http-nat-gw/badge" /></a>
+
 **Figure 1.** *example-lb-http-nat-gateway diagram*
 
 <img src="https://github.com/GoogleCloudPlatform/terraform-google-lb-http/raw/master/examples/http-nat-gateway/diagram.png" width="800px"></img>
