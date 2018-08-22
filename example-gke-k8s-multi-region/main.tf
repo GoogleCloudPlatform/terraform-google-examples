@@ -136,45 +136,45 @@ module "glb" {
 }
 
 module "cluster1_named_port_1" {
-  source = "github.com/danisla/terraform-google-named-ports"
+  source         = "github.com/danisla/terraform-google-named-ports"
   instance_group = "${element(module.cluster1.instance_groups, 0)}"
-  name = "http"
-  port = "30000"
+  name           = "http"
+  port           = "30000"
 }
 
 module "cluster1_named_port_2" {
-  source = "github.com/danisla/terraform-google-named-ports"
+  source         = "github.com/danisla/terraform-google-named-ports"
   instance_group = "${element(module.cluster1.instance_groups, 1)}"
-  name = "http"
-  port = "30000"
+  name           = "http"
+  port           = "30000"
 }
 
 module "cluster1_named_port_3" {
-  source = "github.com/danisla/terraform-google-named-ports"
+  source         = "github.com/danisla/terraform-google-named-ports"
   instance_group = "${element(module.cluster1.instance_groups, 2)}"
-  name = "http"
-  port = "30000"
+  name           = "http"
+  port           = "30000"
 }
 
 module "cluster2_named_port_1" {
-  source = "github.com/danisla/terraform-google-named-ports"
+  source         = "github.com/danisla/terraform-google-named-ports"
   instance_group = "${element(module.cluster2.instance_groups, 0)}"
-  name = "http"
-  port = "30000"
+  name           = "http"
+  port           = "30000"
 }
 
 module "cluster2_named_port_2" {
-  source = "github.com/danisla/terraform-google-named-ports"
+  source         = "github.com/danisla/terraform-google-named-ports"
   instance_group = "${element(module.cluster2.instance_groups, 1)}"
-  name = "http"
-  port = "30000"
+  name           = "http"
+  port           = "30000"
 }
 
 module "cluster2_named_port_3" {
-  source = "github.com/danisla/terraform-google-named-ports"
+  source         = "github.com/danisla/terraform-google-named-ports"
   instance_group = "${element(module.cluster2.instance_groups, 2)}"
-  name = "http"
-  port = "30000"
+  name           = "http"
+  port           = "30000"
 }
 
 output "cluster1-name" {
