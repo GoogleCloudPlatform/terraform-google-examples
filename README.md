@@ -28,6 +28,7 @@ __Table of Contents__
 1. [example-lb-https-gke](#example-lb-https-gke)
 1. [example-lb-http-nat-gateway](#example-lb-http-nat-gateway)
 1. [example-lb-https-content](#example-lb-https-content)
+1. [example-lb-https-multiple-certs](#example-lb-https-multiple-certs)
 1. [example-lb-internal](#example-lb-internal)
 1. [example-k8s-gce](#example-k8s-gce)
 1. [example-gke-nat-gateway](#example-gke-nat-gateway)
@@ -107,9 +108,26 @@ Modules used:
 
 ## [example-lb-https-content](https://github.com/GoogleCloudPlatform/terraform-google-lb-http/tree/master/examples/https-content)
 
+[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-lb-http&working_dir=examples/https-content&page=shell&tutorial=README.md)
+
+<a href="https://concourse-tf.gcp.solutions/teams/main/pipelines/tf-examples-lb-https-content" target="_blank">
+<img src="https://concourse-tf.gcp.solutions/api/v1/teams/main/pipelines/tf-examples-lb-https-content/badge" /></a>
+
 **Figure 1.** *example-lb-https-content diagram*
 
 <img src="https://github.com/GoogleCloudPlatform/terraform-google-lb-http/raw/master/examples/https-content/diagram.png" width="800px"></img>
+
+Modules used:
+
+- [terraform-google-managed-instance-group](https://github.com/GoogleCloudPlatform/terraform-google-managed-instance-group)
+- [terraform-google-lb-http](https://github.com/GoogleCloudPlatform/terraform-google-lb-http)
+
+## [example-lb-https-multiple-certs](https://github.com/GoogleCloudPlatform/terraform-google-lb-http/tree/master/examples/multiple-certs)
+
+[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-lb-http&working_dir=examples/multiple-certs&page=shell&tutorial=README.md)
+
+<a href="https://concourse-tf.gcp.solutions/teams/main/pipelines/tf-examples-lb-https-multi-cert" target="_blank">
+<img src="https://concourse-tf.gcp.solutions/api/v1/teams/main/pipelines/tf-examples-lb-https-multi-cert/badge" /></a>
 
 Modules used:
 
