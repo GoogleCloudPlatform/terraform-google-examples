@@ -37,6 +37,7 @@ __Table of Contents__
 1. [example-gke-k8s-service-lb](#example-gke-k8s-service-lb)
 1. [example-gke-k8s-multi-region](#example-gke-k8s-multi-region)
 1. [example-custom-machine-types](#example-custom-machine-types)
+1. [example-blue-green-mig-deployment](#example-blue-green-deployment)
 
 ## [example-lb](https://github.com/GoogleCloudPlatform/terraform-google-lb/tree/master/examples/basic)
 
@@ -73,6 +74,11 @@ Modules used:
 - [terraform-google-lb-http](https://github.com/GoogleCloudPlatform/terraform-google-lb-http)
 
 ## [example-lb-https-gke](https://github.com/GoogleCloudPlatform/terraform-google-lb-http/tree/master/examples/https-gke)
+
+[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-lb-http&working_dir=examples/https-gke&page=shell&tutorial=README.md)
+
+<a href="https://concourse-tf.gcp.solutions/teams/main/pipelines/tf-examples-lb-https-gke" target="_blank">
+<img src="https://concourse-tf.gcp.solutions/api/v1/teams/main/pipelines/tf-examples-lb-https-gke/badge" /></a>
 
 **Figure 1.** *example-lb-https-gke diagram*
 
@@ -210,3 +216,9 @@ Example showing how to create an L7 HTTP load balancer across multiple regional 
 Example showing how to create custom machine types with bastion host and NAT gateway.
 
 <img src="https://github.com/GoogleCloudPlatform/terraform-google-examples/raw/master/example-custom-machine-types/diagram.png" width="800px"></img>
+
+## [example-blue-green-mig-deployment](https://github.com/GoogleCloudPlatform/terraform-google-managed-instance-group/tree/master/examples/blue-green)
+
+[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-managed-instance-group&working_dir=examples/blue-green&page=shell&tutorial=README.md)
+
+Example showing how to perform a blue-green deployment with a managed instance group.
