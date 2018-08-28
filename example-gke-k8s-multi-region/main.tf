@@ -26,7 +26,7 @@ data "google_client_config" "current" {}
 
 resource "google_compute_network" "default" {
   name                    = "${var.network_name}"
-  auto_create_subnetworks = "false"
+  auto_create_subnetworks = false
 }
 
 resource "google_compute_subnetwork" "region1" {
