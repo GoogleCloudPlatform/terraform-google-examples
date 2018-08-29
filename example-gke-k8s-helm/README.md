@@ -19,6 +19,30 @@
 ../terraform-install.sh
 ```
 
+## Install Helm
+
+1. Install the latest version of Helm:
+
+```
+curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
+chmod 700 get_helm.sh
+./get_helm.sh
+
+helm init --client-only
+```
+
+2. Install the Terraform Helm provider:
+
+```
+(
+  set -x; cd "$(mktemp -d)" &&
+  curl -fsSLO "https://github.com/mcuadros/terraform-provider-helm/releases/download/v0.5.1/terraform-provider-helm_v0.5.1_$(uname | tr '[:upper:]' '[:lower:]')_amd64.tar.gz" &&
+  tar -xvf terraform-provider-helm*.tar.gz &&
+  mkdir -p ~/.terraform.d/plugins/ &&
+  mv terraform-provider-helm*/terraform-provider-helm ~/.terraform.d/plugins/
+)
+```
+
 ## Set up the environment
 
 1. Set the project, replace `YOUR_PROJECT` with your project ID:
@@ -42,7 +66,7 @@ export GOOGLE_PROJECT=$(gcloud config get-value project)
 
 ```
 cat > terraform.tfvars <<EOF
-helm_version = "$(helm version -c --short | egrep -o 'v[0-9].[0-9].[0-9]')"
+helm_version = "$(helm version -c --short | egrep -o 'v[0-9]*.[0-9]*.[0-9]*')"
 acme_email = "$(gcloud config get-value account)"
 EOF
 
@@ -57,30 +81,6 @@ This example creates a Cloud Endpoints service and requires that the Service Man
 
 ```
 gcloud services enable servicemanagement.googleapis.com
-```
-
-## Install Helm
-
-1. Install the latest version of Helm:
-
-```
-curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
-chmod 700 get_helm.sh
-./get_helm.sh
-
-helm init --client-only
-```
-
-2. Install the Terraform Helm provider:
-
-```
-(
-  set -x; cd "$(mktemp -d)" &&
-  curl -fsSLO "https://github.com/mcuadros/terraform-provider-helm/releases/download/v0.5.1/terraform-provider-helm_v0.5.1_$(uname | tr '[:upper:]' '[:lower:]')_amd64.tar.gz" &&
-  tar -xvf terraform-provider-helm*.tar.gz &&
-  mkdir -p ~/.terraform.d/plugins/ &&
-  mv terraform-provider-helm*/terraform-provider-helm ~/.terraform.d/plugins/
-)
 ```
 
 ## Run Terraform
