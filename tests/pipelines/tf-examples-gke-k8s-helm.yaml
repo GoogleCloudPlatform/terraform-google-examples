@@ -52,11 +52,16 @@ jobs:
         mkdir -p ~/.terraform.d/plugins/
         mv terraform-provider-helm*/terraform-provider-helm ~/.terraform.d/plugins/
 
+        cat > terraform.tfvars <<EOF
+        helm_version = "$(helm version -c --short | egrep -o 'v[0-9]*.[0-9]*.[0-9]*')"
+        acme_email = {{maintainer_email}}
+        EOF
+
+        cat terraform.tfvars
+
       TF_VAR_network_name: tf-ci-gke-k8s-helm
       TF_VAR_region: us-west1
       TF_VAR_zone: us-west1-b
-      TF_VAR_helm_version: v2.9.1
-      TF_VAR_acme_email: {{maintainer_email}}
       TF_VAR_acme_url: "https://acme-staging.api.letsencrypt.org/directory"
     on_failure:
       put: send-an-email
