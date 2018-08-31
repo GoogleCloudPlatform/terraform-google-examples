@@ -16,7 +16,7 @@ provider "google" {
 
 resource "google_compute_network" "default" {
   name                    = "${var.network_name}"
-  auto_create_subnetworks = "false"
+  auto_create_subnetworks = false
 }
 
 resource "google_compute_subnetwork" "default" {
