@@ -101,7 +101,7 @@ module "cluster2_app" {
 
 module "glb" {
   source            = "GoogleCloudPlatform/lb-http/google"
-  version           = "1.0.8"
+  version           = "1.0.10"
   name              = "gke-multi-regional"
   target_tags       = ["tf-gke-region1", "tf-gke-region2"]
   firewall_networks = ["${google_compute_network.default.name}"]
