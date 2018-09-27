@@ -38,7 +38,7 @@ resource "google_container_cluster" "default" {
   zone               = "${var.zone}"
   initial_node_count = 3
   min_master_version = "${data.google_container_engine_versions.default.latest_master_version}"
-  network            = "${google_compute_subnetwork.default.name}"
+  network            = "${google_compute_network.default.name}"
   subnetwork         = "${google_compute_subnetwork.default.name}"
 
   // Use legacy ABAC until these issues are resolved: 
