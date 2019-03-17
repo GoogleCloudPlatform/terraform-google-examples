@@ -39,6 +39,7 @@ __Table of Contents__
 1. [example-gke-k8s-multi-region](#example-gke-k8s-multi-region)
 1. [example-custom-machine-types](#example-custom-machine-types)
 1. [example-blue-green-mig-deployment](#example-blue-green-deployment)
+1. [example-dynamic-variables-vm-injection-terraform-best-practices](https://github.com/galic1987/professional-services/tree/master/examples/cryptorealtime/terraform-setup)
 
 ## [example-lb](https://github.com/GoogleCloudPlatform/terraform-google-lb/tree/master/examples/basic)
 
