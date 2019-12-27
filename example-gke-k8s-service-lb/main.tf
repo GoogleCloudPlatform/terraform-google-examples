@@ -30,12 +30,12 @@ resource "google_compute_subnetwork" "default" {
 data "google_client_config" "current" {}
 
 data "google_container_engine_versions" "default" {
-  zone = "${var.zone}"
+  location = "${var.zone}"
 }
 
 resource "google_container_cluster" "default" {
   name               = "${var.network_name}"
-  zone               = "${var.zone}"
+  location           = "${var.zone}"
   initial_node_count = 3
   min_master_version = "${data.google_container_engine_versions.default.latest_master_version}"
   network            = "${google_compute_subnetwork.default.name}"
@@ -67,8 +67,4 @@ output cluster_name {
 
 output cluster_region {
   value = "${var.region}"
-}
-
-output cluster_zone {
-  value = "${google_container_cluster.default.zone}"
 }
