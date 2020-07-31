@@ -1,3 +1,7 @@
+variable "project" {
+    default = "flowing-tea-284020"
+}
+
 variable "region" {
   default = "us-central1"
 }
@@ -54,12 +58,12 @@ variable "disk_type" {
 
 variable "disk_size_gb" {
   description = "The size of the image in gigabytes."
-  default     = 10
+  default     = 20
 }
 
 variable "access_config" {
   description = "The access config block for the instances. Set to [{}] for ephemeral external IP."
-  type        = "list"
+  type        = list
   default     = []
 }
 
@@ -70,7 +74,7 @@ variable "network_ip" {
 
 variable "node_tags" {
   description = "Additional compute instance network tags for the nodes."
-  type        = "list"
+  type        = list
   default     = []
 }
 
@@ -81,7 +85,7 @@ variable "startup_script" {
 
 variable "metadata" {
   description = "Map of metadata values to pass to instances."
-  type        = "map"
+  type        = map
   default     = {}
 }
 
@@ -97,7 +101,7 @@ variable "service_account_email" {
 
 variable "service_account_scopes" {
   description = "List of scopes for the instance template service account"
-  type        = "list"
+  type        = list
 
   default = [
     "https://www.googleapis.com/auth/compute",

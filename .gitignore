@@ -3,3 +3,4 @@
 **/backend.tf
 **/terraform.tfvars
 **/values-*.yaml
+*.tfplan
